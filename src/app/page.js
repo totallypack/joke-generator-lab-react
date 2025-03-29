@@ -1,4 +1,14 @@
-function Home() {
+'use client';
+
+import React, { useState } from 'react';
+import JokeComponent from '../components/RandomJoke';
+
+export default function Home() {
+  const [showJoke, setShowJoke] = useState(false);
+  const handleShowJoke = () => {
+    setShowJoke(true);
+  };
+
   return (
     <div
       className="text-center d-flex flex-column justify-content-center align-content-center"
@@ -9,9 +19,13 @@ function Home() {
         margin: '0 auto',
       }}
     >
-      Welcome to Next JS!
+      {!showJoke ? (
+        <button type="button" onClick={handleShowJoke}>
+          GET JOKE
+        </button>
+      ) : (
+        <JokeComponent />
+      )}
     </div>
   );
 }
-
-export default Home;
